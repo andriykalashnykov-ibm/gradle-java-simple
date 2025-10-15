@@ -9,6 +9,6 @@ plugins {
     id 'org.gradle.toolchains.foojay-resolver-convention' version "${foojayVersion}"
 }
 
-rootProject.name = 'gradle-java-simple'
+rootProject.name = 'gradle-java-simple-ibm'
 
 include('app')
