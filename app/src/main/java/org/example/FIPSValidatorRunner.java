@@ -17,14 +17,8 @@ public class FIPSValidatorRunner {
         System.out.println("   Result: " + fipsEnabled);
         System.out.println();
 
-        // Run getFIPSStatus
-        System.out.println("2. Getting FIPS status...");
-        String status = validator.getFIPSStatus();
-        System.out.println("   Status: " + status);
-        System.out.println();
-
         // Run printFIPSProviders
-        System.out.println("3. Printing FIPS providers...");
+        System.out.println("2. Printing FIPS providers...");
         validator.printFIPSProviders();
         System.out.println();
 

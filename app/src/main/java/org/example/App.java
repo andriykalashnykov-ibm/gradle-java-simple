@@ -96,7 +96,7 @@ public class App {
 
         // Display FIPS status
         FIPSValidator fipsValidator = new FIPSValidator();
-        System.out.println("\n" + fipsValidator.getFIPSStatus());
+        System.out.println("\n" + fipsValidator.isFIPSModeEnabled());
         fipsValidator.printFIPSProviders();
     }
 }

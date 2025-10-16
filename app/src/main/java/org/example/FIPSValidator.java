@@ -52,13 +52,13 @@ public class FIPSValidator {
         return false;
     }
 
-    public String getFIPSStatus() {
-        if (isFIPSModeEnabled()) {
-            return "FIPS mode is ENABLED";
-        } else {
-            return "FIPS mode is DISABLED";
-        }
-    }
+//    public String getFIPSStatus() {
+//        if (isFIPSModeEnabled()) {
+//            return "FIPS mode is ENABLED";
+//        } else {
+//            return "FIPS mode is DISABLED";
+//        }
+//    }
 
     public void printFIPSProviders() {
         System.out.println("Security Providers:");

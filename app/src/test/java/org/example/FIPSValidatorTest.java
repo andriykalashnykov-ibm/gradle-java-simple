@@ -27,27 +27,9 @@ class FIPSValidatorTest {
         assertTrue(result || !result); // Should return either true or false
     }
 
-    @Test
-    @DisplayName("getFIPSStatus should return enabled or disabled message")
-    void getFIPSStatusReturnsMessage() {
-        String status = fipsValidator.getFIPSStatus();
-        assertNotNull(status);
-        System.out.println("FIPS Status: " + status);
-        assertTrue(status.equals("FIPS mode is ENABLED") || status.equals("FIPS mode is DISABLED"));
-    }
 
-    @Test
-    @DisplayName("getFIPSStatus should match isFIPSModeEnabled result")
-    void getFIPSStatusMatchesIsFIPSModeEnabled() {
-        boolean isEnabled = fipsValidator.isFIPSModeEnabled();
-        String status = fipsValidator.getFIPSStatus();
 
-        if (isEnabled) {
-            assertEquals("FIPS mode is ENABLED", status);
-        } else {
-            assertEquals("FIPS mode is DISABLED", status);
-        }
-    }
+
 
     @Test
     @DisplayName("printFIPSProviders should print to console")
@@ -94,23 +76,5 @@ class FIPSValidatorTest {
 
         assertEquals(firstCall, secondCall);
         assertEquals(secondCall, thirdCall);
-    }
-
-    @Test
-    @DisplayName("getFIPSStatus should never return null")
-    void getFIPSStatusNeverReturnsNull() {
-        String status = fipsValidator.getFIPSStatus();
-        assertNotNull(status);
-        System.out.println("FIPS Status: " + status);
-    }
-
-    @Test
-    @DisplayName("Multiple FIPSValidator instances should return same FIPS status")
-    void multipleFIPSValidatorInstancesReturnSameStatus() {
-        FIPSValidator validator1 = new FIPSValidator();
-        FIPSValidator validator2 = new FIPSValidator();
-
-        assertEquals(validator1.isFIPSModeEnabled(), validator2.isFIPSModeEnabled());
-        assertEquals(validator1.getFIPSStatus(), validator2.getFIPSStatus());
     }
 }
