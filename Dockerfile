@@ -23,17 +23,16 @@ COPY --from=builder /build/app/build/classes/java/main /app/classes
 COPY --from=builder /build/app/build/libs /app/libs
 COPY --from=builder /root/.gradle/caches /root/.gradle/caches
 
+RUN ln -sf /etc/ssl/conf.d/openssl-fips.cnf /etc/ssl/openssl.cnf && update-crypto-policies --set FIPS
+
 USER 1001
 
 # Set FIPS mode
-ENV JAVA_OPTS="-Dsemeru.fips=true -Dsemeru.customprofile=OpenJCEPlusFIPS.FIPS140-3"
+ENV JAVA_TOOL_OPTIONS="-Dsemeru.fips=true -Dsemeru.customprofile=OpenJCEPlusFIPS.FIPS140-3"
 
 # Build classpath and run FIPSValidatorRunner
 CMD CLASSPATH="/app/classes"; \
     for jar in $(find /root/.gradle/caches/modules-2/files-2.1 -name "*.jar" 2>/dev/null); do \
         CLASSPATH="$CLASSPATH:$jar"; \
     done; \
-    java -Dsemeru.fips=true \
-         -Dsemeru.customprofile=OpenJCEPlusFIPS.FIPS140-3 \
-         -cp "$CLASSPATH" \
-         org.example.FIPSValidatorRunner
+    java -cp "$CLASSPATH" org.example.FIPSValidatorRunner
